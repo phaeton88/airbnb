@@ -13,6 +13,10 @@ gem 'sass-rails', '~> 6.0'
 gem 'uglifier', '>= 4.2.0'
 # Transpile app-like JavaScript. Read more: https://github.com/rails/webpacker
 gem 'webpacker'
+# Use kaminari for activerecord pagination
+gem 'kaminari'
+# Use Stripe for receiving payments
+gem 'stripe'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'mini_racer', platforms: :ruby
 
@@ -35,6 +39,7 @@ gem 'bcrypt', '~> 3.1.13'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.6', require: false
+gem 'aws-sdk', '~> 3.0'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
