@@ -11,4 +11,20 @@ class StaticPagesController < ApplicationController
   def login
     render 'login'
   end
+
+  def guestpage
+    render 'guestpage'
+  end
+
+  def hostpage
+    render 'hostpage'
+  end
+
+  def propertybookings
+    render 'propertybookings'
+  end
+
+  def success
+    render 'success'
+  end
 end

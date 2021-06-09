@@ -2,6 +2,10 @@ Rails.application.routes.draw do
   root to: 'static_pages#home'
   get '/property/:id' => 'static_pages#property'
   get '/login' => 'static_pages#login'
+  get '/guestpage/:user' => 'static_pages#guestpage'
+  get '/hostpage/:user' => 'static_pages#hostpage'
+  get '/property/bookings/:id' => 'static_pages#propertybookings'
+  get '/booking/success/:id' => 'static_pages#success'
 
   namespace :api do
     # Add routes below this line
@@ -17,6 +21,10 @@ Rails.application.routes.draw do
     post '/properties/create' => 'properties#create'
     delete '/properties/:id' => 'properties#destroy'
     put '/properties/:id/edit' =>'properties#edit'
+    get '/users/:username/bookings' => 'bookings#index_by_user'
+    get '/users/:username/properties' => 'properties#index_by_user'
+    get 'bookings/success/:id' => 'bookings#success'
+
 
   end
 

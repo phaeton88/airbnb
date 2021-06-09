@@ -24,7 +24,7 @@ module Api
           currency: "usd",
           quantity: 1,
         }],
-        success_url: "#{ENV['URL']}/booking/#{booking.id}/success",
+        success_url: "#{ENV['URL']}/booking/success/#{booking.id}",
         cancel_url: "#{ENV['URL']}#{params[:cancel_url]}",
       )
 

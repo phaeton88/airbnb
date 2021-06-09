@@ -24,6 +24,23 @@ module Api
       render 'api/bookings/index'
     end
 
+    def index_by_user
+        user = User.find_by(username: params[:username])
+        bookings = Booking.where(user_id: user.id)
+        if bookings
+          @bookings = bookings
+          render 'api/bookings/index'
+        end
+    end
+
+    def success
+      booking = Booking.find_by(id: params[:id])
+      if booking
+        @booking = booking
+        render 'api/bookings/success'
+      end
+    end
+
     private
 
     def booking_params

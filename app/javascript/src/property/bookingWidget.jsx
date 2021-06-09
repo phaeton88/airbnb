@@ -39,7 +39,7 @@ class BookingWidget extends React.Component {
   }
 
   initiateStripeCheckout = (booking_id) => {
-  return fetch(`/api/charges?booking_id=${booking_id}&cancel_url=${window.location.pathname}`, safeCredentials({
+    fetch(`/api/charges?booking_id=${booking_id}&cancel_url=${window.location.pathname}`, safeCredentials({
     method: 'POST',
   }))
     .then(handleErrors)
@@ -79,6 +79,7 @@ class BookingWidget extends React.Component {
     }))
       .then(handleErrors)
       .then(response => {
+
         this.initiateStripeCheckout(response.booking.id);
       })
       .catch(error => {
@@ -88,9 +89,14 @@ class BookingWidget extends React.Component {
 
   onDatesChange = ({ startDate, endDate }) => this.setState({ startDate, endDate })
 
-  onFocusChange = (focusedInput) => this.setState({ focusedInput })
+  onFocusChange = (focusedInput) => {
+    //console.log (focusedInput);
+    this.setState({ focusedInput })
+  }
 
   isDayBlocked = day => this.state.existingBookings.filter(b => day.isBetween(b.start_date, b.end_date, null, '[)')).length > 0
+
+  //isEndDayBlocked = day => this.state.existingBookings.filter(b => day.isBetween(b.start_date, b.end_date, null, '(]')).length > 0
 
   render () {
     const { authenticated, startDate, endDate, focusedInput } = this.state;
@@ -114,17 +120,17 @@ class BookingWidget extends React.Component {
           <h5>${price_per_night} <small>per night</small></h5>
           <hr/>
           <div style={{ marginBottom: focusedInput ? '400px': '2rem' }}>
-            <DateRangePicker
-              startDate={startDate} // momentPropTypes.momentObj or null,
-              startDateId="start_date" // PropTypes.string.isRequired,
-              endDate={endDate} // momentPropTypes.momentObj or null,
-              endDateId="end_date" // PropTypes.string.isRequired,
-              onDatesChange={this.onDatesChange}
-              focusedInput={focusedInput} // PropTypes.oneOf([START_DATE, END_DATE]) or null,
-              onFocusChange={this.onFocusChange} // PropTypes.func.isRequired,
-              isDayBlocked={this.isDayBlocked} // block already booked dates
-              numberOfMonths={1}
-            />
+          <DateRangePicker
+          startDate={startDate} // momentPropTypes.momentObj or null,
+          startDateId="start_date" // PropTypes.string.isRequired,
+          endDate={endDate} // momentPropTypes.momentObj or null,
+          endDateId="end_date" // PropTypes.string.isRequired,
+          onDatesChange={this.onDatesChange}
+          focusedInput={focusedInput} // PropTypes.oneOf([START_DATE, END_DATE]) or null,
+          onFocusChange={this.onFocusChange} // PropTypes.func.isRequired,
+          isDayBlocked={this.isDayBlocked} // block already booked dates
+          numberOfMonths={1}
+          />
           </div>
           <button type="submit" className="btn btn-large btn-danger btn-block">Book</button>
         </form>

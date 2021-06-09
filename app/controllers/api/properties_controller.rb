@@ -1,7 +1,7 @@
 module Api
   class PropertiesController < ApplicationController
 
-  skip_before_action :verify_authenticity_token, only: [:create]
+  #skip_before_action :verify_authenticity_token, only: [:create]
 
     def index
       @properties = Property.order(created_at: :desc).page(params[:page]).per(6)
@@ -57,6 +57,14 @@ module Api
 
     end
 
+    def index_by_user
+        user = User.find_by(username: params[:username])
+        properties = Property.where(user_id: user.id)
+        if properties
+          @properties = properties
+          render 'api/properties/indexbyuser'
+        end
+    end
 
     private
 

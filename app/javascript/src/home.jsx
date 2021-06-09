@@ -8,14 +8,28 @@ import AddProperty from './addProperty';
 import './home.scss';
 
 class Home extends React.Component {
-  state = {
-    properties: [],
-    total_pages: null,
-    next_page: null,
-    loading: true,
+  constructor (props) {
+    super (props);
+    this.state = {
+      properties: [],
+      total_pages: null,
+      next_page: null,
+      loading: true,
+      usrname: '',
+    }
+  this.authenticate = this.authenticate.bind(this);
+  }
+
+  authenticate () {
+    fetch("/api/authenticated")
+      .then(handleErrors)
+      .then((res) => {
+        this.setState ({usrname: res.username});
+      });
   }
 
   componentDidMount() {
+    this.authenticate ();
     fetch('/api/properties?page=1')
       .then(handleErrors)
       .then(data => {
@@ -46,11 +60,17 @@ class Home extends React.Component {
   }
 
   render () {
-    const { properties, next_page, loading } = this.state;
+    const { properties, next_page, loading, usrname } = this.state;
     return (
       <Layout>
         <div className="col-12 col-lg-5">
+        {usrname ?
+        <small>Logged in as <a href={'/guestpage/' + usrname}><b>{usrname}</b></a></small>: ''
+        }
           <AddProperty />
+          {usrname ?
+          <small><a href={'/hostpage/' + usrname}><b>View my listed properties</b></a></small>: ''
+          }
         </div>
         <div className="container pt-4">
           <h4 className="mb-1">Top-rated places to stay</h4>
