@@ -32,12 +32,13 @@ class Success extends React.Component {
     const { id, start_date, end_date, property_id } = booking;
     return (
       <Layout>
-        <h1>Booking was successful!</h1>
-        <p>Booking ID: {id}</p>
-        <p>Property ID: {property_id}</p>
-        <p>Start Date: {start_date}</p>
-        <p>End Date: {end_date}</p>
-
+        <h1 className="mt-2 p-4">Booking was successful!</h1>
+        <div className="col-6 col-lg-4 mb-4 px-4 property">
+          <p>Booking ID: {id}</p>
+          <p>Property ID: {property_id}</p>
+          <p>Start Date: {start_date}</p>
+          <p>End Date: {end_date}</p>
+      </div>
       </Layout>
     )
   }

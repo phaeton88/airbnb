@@ -63,7 +63,7 @@ class Guestpage extends React.Component {
       </div>
       {bookings.map((booking) => {
         return (
-          <div key={booking.id}>
+          <div key={booking.id} className="p-4">
           <h4>Booking {booking.id}</h4>
           <p> Start Date: {booking.start_date}</p>
           <p> End Date Date: {booking.end_date}</p>
@@ -71,7 +71,7 @@ class Guestpage extends React.Component {
             <p> View Property</p>
           </a>
           <p> Price per night: {booking.price_per_night}</p>
-          {booking.is_paid == true ? <p>Paid</p> : <button onClick={() => {this.initiateStripeCheckout(booking.id)}}>Pay</button>}
+          {booking.is_paid == true ? <p className="green">Paid</p> : <button className="btn btn-danger" onClick={() => {this.initiateStripeCheckout(booking.id)}}>Pay</button>}
           </div>
         )
       })}

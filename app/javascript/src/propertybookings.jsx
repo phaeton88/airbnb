@@ -34,10 +34,10 @@ class PropertyBookings extends React.Component {
     const { bookings, id } = this.state;
     return (
       <Layout>
-        <h1>Bookings of Property {id}</h1>
+        <h1 className="p-4">Bookings of Property {id}</h1>
         {bookings.map(booking => {
           return (
-            <div key={booking.id} className="col-6 col-lg-4 mb-4 property">
+            <div key={booking.id} className="col-6 col-lg-4 mb-4 px-4 property">
                 <p className="text-uppercase mb-0 text-secondary">Start date: {booking.start_date}</p>
                 <p className="text-uppercase mb-0 text-secondary">End date: {booking.end_date}</p>
                 <p className="text-uppercase mb-0 text-secondary">Price per night: {booking.price_per_night}</p>
