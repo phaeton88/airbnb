@@ -44,7 +44,7 @@ class BookingWidget extends React.Component {
   }))
     .then(handleErrors)
     .then(response => {
-      const stripe = Stripe(process.env.STRIPE_PUBLISHABLE_KEY);
+      const stripe = Stripe(`${process.env.STRIPE_PUBLISHABLE_KEY}`);
 
       stripe.redirectToCheckout({
         // Make the id field from the Checkout Session creation API response
@@ -96,7 +96,6 @@ class BookingWidget extends React.Component {
 
   isDayBlocked = day => this.state.existingBookings.filter(b => day.isBetween(b.start_date, b.end_date, null, '[)')).length > 0
 
-  //isEndDayBlocked = day => this.state.existingBookings.filter(b => day.isBetween(b.start_date, b.end_date, null, '(]')).length > 0
 
   render () {
     const { authenticated, startDate, endDate, focusedInput } = this.state;
