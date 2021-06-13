@@ -1,8 +1,9 @@
 // home.jsx
 import React from 'react';
+import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
 import ReactDOM from 'react-dom';
 import Layout from '@src/layout';
-import { handleErrors } from '@utils/fetchHelper';
+import { safeCredentials, handleErrors } from '@utils/fetchHelper';
 import AddProperty from './addProperty';
 
 import './home.scss';
@@ -18,6 +19,7 @@ class Home extends React.Component {
       usrname: '',
     }
   this.authenticate = this.authenticate.bind(this);
+  this.logOut = this.logOut.bind(this);
   }
 
   authenticate () {
@@ -26,6 +28,18 @@ class Home extends React.Component {
       .then((res) => {
         this.setState ({usrname: res.username});
       });
+  }
+
+  logOut () {
+    fetch(`/api/sessions/`, safeCredentials({
+      method: 'DELETE',
+    }))
+    .then(handleErrors)
+    .then(res => {
+        if (res.success) {
+          window.location.replace("/");
+        }
+    })
   }
 
   componentDidMount() {
@@ -63,13 +77,9 @@ class Home extends React.Component {
     const { properties, next_page, loading, usrname } = this.state;
     return (
       <Layout>
-        <div className="col-12 col-lg-5">
-        {usrname ?
-        <small>Logged in as <a href={'/guestpage/' + usrname}><b>{usrname}</b></a></small>: ''
-        }
-          <AddProperty />
+        <div className="col-12">
           {usrname ?
-          <small><a href={'/hostpage/' + usrname}><b>View my listed properties</b></a></small>: ''
+          <small><b><Link className="text-secondary" to="/add">Add a Property</Link></b></small>: ''
           }
         </div>
         <div className="container pt-4">
@@ -104,9 +114,22 @@ class Home extends React.Component {
   }
 }
 
+
+
+const App = () => {
+  return (
+    <Router>
+      <Switch>
+        <Route path="/" exact component={Home} />
+        <Route path="/add" exact component={AddProperty} />
+      </Switch>
+    </Router>
+  );
+}
+
 document.addEventListener('DOMContentLoaded', () => {
   ReactDOM.render(
-    <Home />,
+    <App />,
     document.body.appendChild(document.createElement('div')),
   )
 })

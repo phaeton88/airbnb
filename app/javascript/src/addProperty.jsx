@@ -1,5 +1,7 @@
 import React from 'react';
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import { safeCredentials, safeCredentialsNoContent, handleErrors } from '@utils/fetchHelper';
+import Layout from '@src/layout';
 class AddProperty extends React.Component {
   constructor (props) {
     super (props);
@@ -58,37 +60,39 @@ class AddProperty extends React.Component {
   render () {
     const { title, description, city, country, property_type, price_per_night, max_guests, bedrooms, beds, baths } = this.state;
     return (
-      <React.Fragment>
-      <div className="py-4">
-        <h2>Add Property</h2>
-        <form onSubmit={this.handleSubmit}>
-          <input className="form-control" name="title" value={title} type="text" placeholder="title" onChange={this.handleChange} />
-          <input className="form-control" name="description" value={description} type="text" placeholder="description" onChange={this.handleChange} />
-          <input className="form-control" name="city" value={city} type="text" placeholder="city" onChange={this.handleChange} />
-          <input className="form-control" name="country" value={country} type="text" placeholder="country" onChange={this.handleChange} />
-          <input className="form-control" name="property_type" value={property_type} type="text" placeholder="property type" onChange={this.handleChange} />
-          <label>Price per Night
-          <input className="form-control" name="price_per_night" value={price_per_night} type="number" placeholder="0" onChange={this.handleChange} />
-          </label>
-          <label>Max Guests
-          <input className="form-control" name="max_guests" value={max_guests} type="number" placeholder="0" onChange={this.handleChange} />
-          </label>
-          <label>Bedrooms
-          <input className="form-control" name="bedrooms" value={bedrooms} type="number" placeholder="0" onChange={this.handleChange} />
-          </label>
-          <label>Beds
-          <input className="form-control" name="beds" value={beds} type="number" placeholder="0" onChange={this.handleChange} />
-          </label>
-          <label>Baths
-          <input className="form-control" name="baths" value={baths} type="number" placeholder="0" onChange={this.handleChange} />
-          </label>
-          <label>Upload image
-          <input className="form-control-file" type="file" id="image-select" name="image" accept="image/*" ref={this.imageRef} />
-          </label>
-          <button className="btn btn-primary">Add</button>
-        </form>
-      </div>
-      </React.Fragment>
+      <Layout>
+        <div className="py-4 px-2">
+          <h2 className="text-center py-4">Add Property</h2>
+          <div className="formDiv p-3">
+            <form onSubmit={this.handleSubmit}>
+              <input className="form-control" name="title" value={title} type="text" placeholder="title" onChange={this.handleChange} />
+              <input className="form-control" name="description" value={description} type="text" placeholder="description" onChange={this.handleChange} />
+              <input className="form-control" name="city" value={city} type="text" placeholder="city" onChange={this.handleChange} />
+              <input className="form-control" name="country" value={country} type="text" placeholder="country" onChange={this.handleChange} />
+              <input className="form-control" name="property_type" value={property_type} type="text" placeholder="property type" onChange={this.handleChange} />
+              <label>Price per Night
+              <input className="form-control" name="price_per_night" value={price_per_night} type="number" placeholder="0" onChange={this.handleChange} />
+              </label>
+              <label>Max Guests
+              <input className="form-control" name="max_guests" value={max_guests} type="number" placeholder="0" onChange={this.handleChange} />
+              </label>
+              <label>Bedrooms
+              <input className="form-control" name="bedrooms" value={bedrooms} type="number" placeholder="0" onChange={this.handleChange} />
+              </label>
+              <label>Beds
+              <input className="form-control" name="beds" value={beds} type="number" placeholder="0" onChange={this.handleChange} />
+              </label>
+              <label>Baths
+              <input className="form-control" name="baths" value={baths} type="number" placeholder="0" onChange={this.handleChange} />
+              </label>
+              <label>Upload image
+              <input className="form-control-file" type="file" id="image-select" name="image" accept="image/*" ref={this.imageRef} />
+              </label>
+              <button className="btn btn-primary btn-block my-4">Add</button>
+            </form>
+          </div>
+        </div>
+      </Layout>
     )
 
   }

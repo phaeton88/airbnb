@@ -116,14 +116,16 @@ class Property extends React.Component {
               <BookingWidget property_id={id} price_per_night={price_per_night} />
             </div>
           </div>
-          <div className="mb-5">
+          <div className="row">
+          <div className="col-12 mb-5">
             {usrname == username ?
             <EditProperty property={property} /> : ''
             }
           </div>
           {usrname == username ?
-          <button className="btn-danger btn-lg my-5" onClick={() => {this.deleteProperty(id)}}>Delete Property</button> : ''
+          <button className="btn-danger mx-auto btn-lg mb-5" onClick={() => {this.deleteProperty(id)}}>Delete Property</button> : ''
           }
+        </div>
         </div>
       </Layout>
     )

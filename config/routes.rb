@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   root to: 'static_pages#home'
+  get '/add' => 'static_pages#home'
   get '/property/:id' => 'static_pages#property'
   get '/login' => 'static_pages#login'
   get '/guestpage/:user' => 'static_pages#guestpage'
@@ -24,6 +25,7 @@ Rails.application.routes.draw do
     get '/users/:username/bookings' => 'bookings#index_by_user'
     get '/users/:username/properties' => 'properties#index_by_user'
     get 'bookings/success/:id' => 'bookings#success'
+    delete '/sessions'             => 'sessions#destroy'
 
 
   end

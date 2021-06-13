@@ -70,35 +70,37 @@ class EditProperty extends React.Component {
     const { id, title, description, city, country, property_type, price_per_night, max_guests, bedrooms, beds, baths } = this.state;
     return (
       <React.Fragment>
-      <h2 className="text-center py-4">Edit Property</h2>
-      <form onSubmit={this.editProperty}>
-        <div class="form-group">
-          <input className="form-control" name="title" value={title} type="text" placeholder="title" onChange={this.handleChange} />
-          <input className="form-control" name="description" value={description} type="text" placeholder="description" onChange={this.handleChange} />
-          <input className="form-control" name="city" value={city} type="text" placeholder="city" onChange={this.handleChange} />
-          <input className="form-control" name="country" value={country} type="text" placeholder="country" onChange={this.handleChange} />
-          <input className="form-control" name="property_type" value={property_type} type="text" placeholder="property type" onChange={this.handleChange} />
-          <label>Price per Night
-          <input className="form-control" name="price_per_night" value={price_per_night} type="number" placeholder="0" onChange={this.handleChange} />
-          </label>
-          <label>Max Guests
-          <input className="form-control" name="max_guests" value={max_guests} type="number" placeholder="0" onChange={this.handleChange} />
-          </label>
-          <label>Bedrooms
-          <input className="form-control" name="bedrooms" value={bedrooms} type="number" placeholder="0" onChange={this.handleChange} />
-          </label>
-          <label>Beds
-          <input className="form-control" name="beds" value={beds} type="number" placeholder="0" onChange={this.handleChange} />
-          </label>
-          <label>Baths
-          <input className="form-control" name="baths" value={baths} type="number" placeholder="0" onChange={this.handleChange} />
-          </label>
+        <h2 className="text-center py-4">Edit Property</h2>
+        <div className="formDiv p-3">
+          <form onSubmit={this.editProperty}>
+            <div className="form-group">
+              <input className="form-control" name="title" value={title} type="text" placeholder="title" onChange={this.handleChange} />
+              <input className="form-control" name="description" value={description} type="text" placeholder="description" onChange={this.handleChange} />
+              <input className="form-control" name="city" value={city} type="text" placeholder="city" onChange={this.handleChange} />
+              <input className="form-control" name="country" value={country} type="text" placeholder="country" onChange={this.handleChange} />
+              <input className="form-control" name="property_type" value={property_type} type="text" placeholder="property type" onChange={this.handleChange} />
+              <label>Price per Night
+              <input className="form-control" name="price_per_night" value={price_per_night} type="number" placeholder="0" onChange={this.handleChange} />
+              </label>
+              <label>Max Guests
+              <input className="form-control" name="max_guests" value={max_guests} type="number" placeholder="0" onChange={this.handleChange} />
+              </label>
+              <label>Bedrooms
+              <input className="form-control" name="bedrooms" value={bedrooms} type="number" placeholder="0" onChange={this.handleChange} />
+              </label>
+              <label>Beds
+              <input className="form-control" name="beds" value={beds} type="number" placeholder="0" onChange={this.handleChange} />
+              </label>
+              <label>Baths
+              <input className="form-control" name="baths" value={baths} type="number" placeholder="0" onChange={this.handleChange} />
+              </label>
+            </div>
+            <label>Upload image
+            <input className="form-control-file" type="file" id="image-select" name="image" accept="image/*" ref={this.imageRef} />
+            </label>
+            <button className="btn btn-block my-2 text-center btn-primary">Edit</button>
+          </form>
         </div>
-        <label>Upload image
-        <input className="form-control-file" type="file" id="image-select" name="image" accept="image/*" ref={this.imageRef} />
-        </label>
-        <button className="btn btn-lg text-center btn-primary">Edit</button>
-      </form>
       </React.Fragment>
     )
 

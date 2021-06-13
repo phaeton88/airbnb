@@ -34,18 +34,22 @@ class PropertyBookings extends React.Component {
     const { bookings, id } = this.state;
     return (
       <Layout>
-        <h1 className="p-4">Bookings of Property {id}</h1>
-        {bookings.map(booking => {
-          return (
-            <div key={booking.id} className="col-6 col-lg-4 mb-4 px-4 property">
-                <p className="text-uppercase mb-0 text-secondary">Start date: {booking.start_date}</p>
-                <p className="text-uppercase mb-0 text-secondary">End date: {booking.end_date}</p>
-                <p className="text-uppercase mb-0 text-secondary">Price per night: {booking.price_per_night}</p>
-                <p className="text-uppercase mb-0 text-secondary">Booked by: {booking.username}</p>
-                {booking.is_paid == true ? <p className="green">Paid</p> : <p className="red">Not paid</p>}
-            </div>
-          )
-        })}
+        <h1 className="py-4 text-center">Bookings of Property # {id}</h1>
+        <div className="container-fluid">
+          <div className="row">
+            {bookings.map(booking => {
+              return (
+                <div key={booking.id} className="col-6 col-lg-4 mb-4 px-4 property">
+                    <p className="text-uppercase mb-0 text-secondary">Start date: {booking.start_date}</p>
+                    <p className="text-uppercase mb-0 text-secondary">End date: {booking.end_date}</p>
+                    <p className="text-uppercase mb-0 text-secondary">Price per night: {booking.price_per_night}</p>
+                    <p className="text-uppercase mb-0 text-secondary">Booked by: {booking.username}</p>
+                    {booking.is_paid == true ? <p className="green">Paid</p> : <p className="red">Not paid</p>}
+                </div>
+              )
+            })}
+          </div>
+        </div>
       </Layout>
     )
   }
