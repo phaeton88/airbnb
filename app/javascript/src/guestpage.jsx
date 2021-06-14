@@ -59,23 +59,25 @@ class Guestpage extends React.Component {
     return (
       <Layout>
         <h1 className="text-center my-4">Booked by {usrname}</h1>
-        <div className="container-fluid d-flex justify-content-center py-4">
+        <div className="container justify-content-center py-4">
           <div className="row">
-            {bookings.map((booking) => {
-              return (
-                <div key={booking.id} className="col-12 col-md-4 mb-4">
-                  <h4>Booking {booking.id}</h4>
-                  <p> Start Date: {booking.start_date}</p>
-                  <p> End Date Date: {booking.end_date}</p>
-                  <a href={'/property/' + booking.property_id}>
-                    <p> View Property</p>
-                  </a>
-                  <p> Price per night: {booking.price_per_night}</p>
-                  {booking.is_paid == true ? <p className="green">Paid</p> : <button className="btn btn-danger" onClick={() => {this.initiateStripeCheckout(booking.id)}}>Pay</button>}
-                </div>
-              )
-            })}
-        </div>
+            {bookings.length > 0?
+                bookings.map((booking) => {
+                  return (
+                    <div key={booking.id} className="col-12 col-md-4 mb-4">
+                      <h4>Booking {booking.id}</h4>
+                      <p> Start Date: {booking.start_date}</p>
+                      <p> End Date Date: {booking.end_date}</p>
+                      <a href={'/property/' + booking.property_id}>
+                        <p> View Property</p>
+                      </a>
+                      <p> Price per night: {booking.price_per_night}</p>
+                      {booking.is_paid == true ? <p className="green">Paid</p> : <button className="btn btn-danger" onClick={() => {this.initiateStripeCheckout(booking.id)}}>Pay</button>}
+                    </div>
+                  )
+                }): <div className="col-12 property"><p className="text-center mb-4">No bookings yet. <a className="text-secondary" href="/">Find a property</a></p></div>
+            }
+          </div>
         </div>
       </Layout>
     )

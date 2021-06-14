@@ -39,19 +39,21 @@ class Hostpage extends React.Component {
         </div>
         <div className="container-fluid">
           <div className="row">
-            {properties.map(property => {
-              return (
-                <div key={property.id} className="col-6 col-lg-4 mb-4 property">
-                  <a href={`/property/${property.id}`} className="text-body text-decoration-none">
-                    <div className="property-image mb-1 rounded" style={{ backgroundImage: `url(${property.image_url})` }} />
-                  </a>  
-                    <p className="text-uppercase mb-0 text-secondary"><small><b>{property.city}</b></small></p>
-                    <h6 className="mb-0">{property.title}</h6>
-                    <p className="mb-0"><small>${property.price_per_night} USD/night</small></p>
-                    <a href={`/property/bookings/${property.id}`} className="text-secondary text-decoration-none"><small><b>View bookings</b></small></a>
-                </div>
-                )
-              })}
+            {properties.length > 0?
+              properties.map(property => {
+                return (
+                  <div key={property.id} className="col-6 col-lg-4 mb-4 property">
+                    <a href={`/property/${property.id}`} className="text-body text-decoration-none">
+                      <div className="property-image mb-1 rounded" style={{ backgroundImage: `url(${property.image_url})` }} />
+                    </a>
+                      <p className="text-uppercase mb-0 text-secondary"><small><b>{property.city}</b></small></p>
+                      <h6 className="mb-0">{property.title}</h6>
+                      <p className="mb-0"><small>${property.price_per_night} USD/night</small></p>
+                      <a href={`/property/bookings/${property.id}`} className="text-secondary text-decoration-none"><small><b>View bookings</b></small></a>
+                  </div>
+                  )
+              }): <div className="col-12 property"><p className="text-center mb-4">No listings yet. <a className="text-secondary" href="/add">Add a property</a></p></div>
+            }
           </div>
         </div>
       </Layout>
