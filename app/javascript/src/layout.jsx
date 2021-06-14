@@ -62,6 +62,11 @@ class Layout extends React.Component {
               <a className="nav-link" href={'/guestpage/' + usrname}>View my bookings</a>
             </li>: ''
             }
+            {usrname ?
+            <li className="nav-item">
+              <a className="nav-link" href="/add">Add a Property</a>
+            </li>: ''
+            }
           </ul>
           {usrname ?
             <button className="btn btn-sm btn-link text-danger" onClick={this.logOut}>Log out</button>: ''

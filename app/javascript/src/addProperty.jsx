@@ -1,7 +1,9 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import ReactDOM from 'react-dom';
 import { safeCredentials, safeCredentialsNoContent, handleErrors } from '@utils/fetchHelper';
 import Layout from '@src/layout';
+import './addProperty.scss';
+
 class AddProperty extends React.Component {
   constructor (props) {
     super (props);
@@ -100,4 +102,9 @@ class AddProperty extends React.Component {
 
 }
 
-export default AddProperty;
+document.addEventListener('DOMContentLoaded', () => {
+  ReactDOM.render(
+    <AddProperty />,
+    document.body.appendChild(document.createElement('div')),
+  )
+})

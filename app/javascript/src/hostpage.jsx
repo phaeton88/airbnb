@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import Layout from './layout';
 import './hostpage.scss';
 import { safeCredentials, safeCredentialsNoContent, handleErrors } from '@utils/fetchHelper';
+import './hostpage.scss';
 
 class Hostpage extends React.Component {
   constructor (props ) {
@@ -41,7 +42,9 @@ class Hostpage extends React.Component {
             {properties.map(property => {
               return (
                 <div key={property.id} className="col-6 col-lg-4 mb-4 property">
+                  <a href={`/property/${property.id}`} className="text-body text-decoration-none">
                     <div className="property-image mb-1 rounded" style={{ backgroundImage: `url(${property.image_url})` }} />
+                  </a>  
                     <p className="text-uppercase mb-0 text-secondary"><small><b>{property.city}</b></small></p>
                     <h6 className="mb-0">{property.title}</h6>
                     <p className="mb-0"><small>${property.price_per_night} USD/night</small></p>

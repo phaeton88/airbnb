@@ -1,10 +1,8 @@
 // home.jsx
 import React from 'react';
-import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
 import ReactDOM from 'react-dom';
 import Layout from '@src/layout';
 import { safeCredentials, handleErrors } from '@utils/fetchHelper';
-import AddProperty from './addProperty';
 
 import './home.scss';
 
@@ -77,11 +75,6 @@ class Home extends React.Component {
     const { properties, next_page, loading, usrname } = this.state;
     return (
       <Layout>
-        <div className="col-12">
-          {usrname ?
-          <small><b><Link className="text-secondary" to="/add">Add a Property</Link></b></small>: ''
-          }
-        </div>
         <div className="container pt-4">
           <h4 className="mb-1">Top-rated places to stay</h4>
           <p className="text-secondary mb-3">Explore some of the best-reviewed stays in the world</p>
@@ -115,21 +108,9 @@ class Home extends React.Component {
 }
 
 
-
-const App = () => {
-  return (
-    <Router>
-      <Switch>
-        <Route path="/" exact component={Home} />
-        <Route path="/add" exact component={AddProperty} />
-      </Switch>
-    </Router>
-  );
-}
-
 document.addEventListener('DOMContentLoaded', () => {
   ReactDOM.render(
-    <App />,
+    <Home />,
     document.body.appendChild(document.createElement('div')),
   )
 })
